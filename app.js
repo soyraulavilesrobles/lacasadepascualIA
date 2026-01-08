@@ -32,6 +32,12 @@ const screens = [
   screenRunnerEnd,
 ];
 
+const startBtn = document.getElementById("start-btn");
+const restartBtn = document.getElementById("restart-btn");
+const skipBtn = document.getElementById("skip-btn");
+const timerEl = document.getElementById("timer");
+const wordCard = document.getElementById("word-card");
+
 let timerId = null;
 let remaining = ROUND_SECONDS;
 let deck = [];
@@ -79,6 +85,11 @@ function startRound() {
   remaining = ROUND_SECONDS;
   deck = shuffle(WORDS);
   showScreen(screenGame);
+  remaining = ROUND_SECONDS;
+  deck = shuffle(WORDS);
+  screenIntro.classList.add("screen--hidden");
+  screenEnd.classList.add("screen--hidden");
+  screenGame.classList.remove("screen--hidden");
   nextWord();
   updateTimer();
   clearInterval(timerId);
@@ -91,11 +102,6 @@ function startRound() {
 function endRound() {
   clearInterval(timerId);
   showScreen(screenEnd);
-}
-
-function stopGuessRound() {
-  clearInterval(timerId);
-  showScreen(screenIntro);
 }
 
 function resetRunner() {
@@ -271,7 +277,7 @@ function handleJump() {
 startGuessBtn.addEventListener("click", startRound);
 startRunnerBtn.addEventListener("click", startRunner);
 restartBtn.addEventListener("click", startRound);
-backBtn.addEventListener("click", stopGuessRound);
+backBtn.addEventListener("click", () => showScreen(screenIntro));
 skipBtn.addEventListener("click", nextWord);
 runnerRestartBtn.addEventListener("click", startRunner);
 runnerBackBtn.addEventListener("click", () => {
@@ -282,17 +288,19 @@ runnerExitBtn.addEventListener("click", () => {
   stopRunner();
   showScreen(screenIntro);
 });
-runnerCanvas.addEventListener("pointerdown", handleJump);
-runnerCanvas.addEventListener("click", handleJump);
-runnerCanvas.addEventListener("touchstart", (event) => {
-  event.preventDefault();
-  handleJump();
-});
+screenRunner.addEventListener("pointerdown", handleJump);
 window.addEventListener("resize", () => {
   if (!runnerAnimationId) {
     return;
   }
   resizeRunnerCanvas();
 });
+  screenGame.classList.add("screen--hidden");
+  screenEnd.classList.remove("screen--hidden");
+}
+
+startBtn.addEventListener("click", startRound);
+restartBtn.addEventListener("click", startRound);
+skipBtn.addEventListener("click", nextWord);
 
 wordCard.classList.add("flip");
