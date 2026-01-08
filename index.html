@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Adivina el Patrimonio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="app">
+      <header class="app__header">
+        <div class="lights" aria-hidden="true">
+          <span></span>
+          <span></span>
+          <span></span>
+          <span></span>
+        </div>
+        <h1>Adivina el Patrimonio</h1>
+        <p>Juego rápido para móvil</p>
+      </header>
+
+      <section class="screen" id="screen-intro">
+        <div class="panel">
+          <h2>¿Listos para jugar?</h2>
+          <p>Una persona mira la pantalla y da pistas. La otra adivina.</p>
+          <button class="btn btn--primary" id="start-btn">Comenzar</button>
+        </div>
+      </section>
+
+      <section class="screen screen--hidden" id="screen-game">
+        <div class="panel panel--game">
+          <div class="panel__top">
+            <span class="timer" id="timer">60</span>
+            <button class="btn btn--ghost" id="skip-btn">Saltar</button>
+          </div>
+          <div class="card" id="word-card" aria-live="polite">Palabra</div>
+          <p class="hint">Da pistas sin decir la palabra.</p>
+        </div>
+      </section>
+
+      <section class="screen screen--hidden" id="screen-end">
+        <div class="panel">
+          <h2>El patrimonio se comparte jugando</h2>
+          <button class="btn btn--primary" id="restart-btn">Jugar otra vez</button>
+        </div>
+      </section>
+    </main>
+
+    <script src="app.js"></script>
+  </body>
+</html>
