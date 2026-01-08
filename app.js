@@ -32,6 +32,12 @@ const screens = [
   screenRunnerEnd,
 ];
 
+const startBtn = document.getElementById("start-btn");
+const restartBtn = document.getElementById("restart-btn");
+const skipBtn = document.getElementById("skip-btn");
+const timerEl = document.getElementById("timer");
+const wordCard = document.getElementById("word-card");
+
 let timerId = null;
 let remaining = ROUND_SECONDS;
 let deck = [];
@@ -79,6 +85,11 @@ function startRound() {
   remaining = ROUND_SECONDS;
   deck = shuffle(WORDS);
   showScreen(screenGame);
+  remaining = ROUND_SECONDS;
+  deck = shuffle(WORDS);
+  screenIntro.classList.add("screen--hidden");
+  screenEnd.classList.add("screen--hidden");
+  screenGame.classList.remove("screen--hidden");
   nextWord();
   updateTimer();
   clearInterval(timerId);
@@ -284,5 +295,12 @@ window.addEventListener("resize", () => {
   }
   resizeRunnerCanvas();
 });
+  screenGame.classList.add("screen--hidden");
+  screenEnd.classList.remove("screen--hidden");
+}
+
+startBtn.addEventListener("click", startRound);
+restartBtn.addEventListener("click", startRound);
+skipBtn.addEventListener("click", nextWord);
 
 wordCard.classList.add("flip");
