@@ -3,6 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Juegos Patrimoniales</title>
     <title>Adivina el Patrimonio</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
@@ -15,6 +16,8 @@
           <span></span>
           <span></span>
         </div>
+        <h1>Juegos Patrimoniales</h1>
+        <p>Mini experiencias móviles para esperar en fila</p>
         <h1>Adivina el Patrimonio</h1>
         <p>Juego rápido para móvil</p>
       </header>
@@ -22,6 +25,15 @@
       <section class="screen" id="screen-intro">
         <div class="panel">
           <h2>¿Listos para jugar?</h2>
+          <p>Elige una experiencia rápida y liviana.</p>
+          <div class="button-stack">
+            <button class="btn btn--primary" id="start-guess-btn">
+              Jugar Adivina el Patrimonio
+            </button>
+            <button class="btn btn--ghost" id="start-runner-btn">
+              Jugar Salto Patrimonial
+            </button>
+          </div>
           <p>Una persona mira la pantalla y da pistas. La otra adivina.</p>
           <button class="btn btn--primary" id="start-btn">Comenzar</button>
         </div>
@@ -42,6 +54,32 @@
         <div class="panel">
           <h2>El patrimonio se comparte jugando</h2>
           <button class="btn btn--primary" id="restart-btn">Jugar otra vez</button>
+          <button class="btn btn--ghost" id="back-btn">Volver al inicio</button>
+        </div>
+      </section>
+
+      <section class="screen screen--hidden" id="screen-runner">
+        <div class="panel panel--runner">
+          <div class="panel__top">
+            <span class="timer" id="runner-timer">60</span>
+            <button class="btn btn--ghost" id="runner-exit-btn">Salir</button>
+          </div>
+          <canvas
+            id="runner-canvas"
+            class="runner-canvas"
+            aria-label="Juego Salto Patrimonial"
+          ></canvas>
+          <p class="hint">Toca para saltar obstáculos y ganar el sello final.</p>
+        </div>
+      </section>
+
+      <section class="screen screen--hidden" id="screen-runner-end">
+        <div class="panel">
+          <h2>¡Muy bien! Ahora eres experto/a en nuestro patrimonio</h2>
+          <button class="btn btn--primary" id="runner-restart-btn">
+            Jugar otra vez
+          </button>
+          <button class="btn btn--ghost" id="runner-back-btn">Volver al inicio</button>
         </div>
       </section>
     </main>
